@@ -1,104 +1,30 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <meta name="theme-color" content="#111827">
-  <title>Monster Rush: Survival</title>
-  <link rel="stylesheet" href="style.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+<meta name="theme-color" content="#101810">
+<title>Monster Rush: Survival</title>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <main class="app-shell">
-    <header class="topbar">
-      <div class="brand">
-        <div class="brand-mark">MR</div>
-        <div>
-          <h1>MONSTER RUSH</h1>
-          <p>SURVIVAL PROTOCOL</p>
-        </div>
-      </div>
-      <div class="top-stats">
-        <div class="stat"><span>COINS</span><strong id="coins">0</strong></div>
-        <div class="stat"><span>WAVE</span><strong id="wave">1 / 10</strong></div>
-      </div>
-    </header>
-
-    <section class="game-layout">
-      <div class="game-column">
-        <div class="arena-frame">
-          <canvas id="gameCanvas" aria-label="Monster Rush game arena"></canvas>
-          <div class="overlay" id="startOverlay">
-            <div class="overlay-card">
-              <span class="eyebrow">MAP 01 • MOUNTAIN REGION</span>
-              <h2>Mountain<br><em>Outpost</em></h2>
-              <p>Survive 10 waves. Defeat the bosses. Unlock the next region.</p>
-              <button id="startBtn" class="primary-btn">START SURVIVAL</button>
-              <small>Move with the joystick • Your weapon auto-fires</small>
-            </div>
-          </div>
-          <div class="overlay hidden" id="endOverlay">
-            <div class="overlay-card">
-              <span class="eyebrow" id="endEyebrow">MISSION REPORT</span>
-              <h2 id="endTitle">Run ended</h2>
-              <p id="endMessage">Try again, survivor.</p>
-              <button id="restartBtn" class="primary-btn">PLAY AGAIN</button>
-            </div>
-          </div>
-          <div class="boss-banner hidden" id="bossBanner">BOSS INCOMING</div>
-          <div class="damage-flash" id="damageFlash"></div>
-        </div>
-
-        <div class="mobile-controls">
-          <div class="joystick-wrap">
-            <div class="joystick" id="joystick" aria-label="Movement joystick">
-              <div class="joystick-knob" id="joystickKnob"></div>
-            </div>
-            <span>MOVE</span>
-          </div>
-          <div class="mobile-hint">
-            <strong>AUTO FIRE <span class="pulse-dot"></span></strong>
-            <span>Stay moving to survive</span>
-          </div>
-          <button id="pauseBtn" class="pause-btn" aria-label="Pause game">Ⅱ</button>
-        </div>
-      </div>
-
-      <aside class="side-panel">
-        <section class="panel-card player-card">
-          <div class="section-label">SURVIVOR STATUS</div>
-          <div class="health-row"><span>HEALTH</span><strong id="healthText">100 / 100</strong></div>
-          <div class="bar"><div id="healthBar" class="bar-fill health-fill"></div></div>
-          <div class="health-row armor-row"><span>REGION</span><strong>MOUNTAIN OUTPOST</strong></div>
-          <div class="health-row"><span>ELIMINATIONS</span><strong id="kills">0</strong></div>
-          <div class="health-row"><span>BEST WAVE</span><strong id="bestWave">1</strong></div>
-        </section>
-
-        <section class="panel-card">
-          <div class="section-label">WEAPON LOADOUT</div>
-          <div class="weapon active-weapon">
-            <div class="weapon-icon">▰</div>
-            <div><strong>RANGER-9</strong><small>Balanced assault rifle</small></div>
-            <span class="equipped">EQUIPPED</span>
-          </div>
-          <div class="weapon locked-weapon">
-            <div class="weapon-icon">✦</div>
-            <div><strong>VOLT STRIKER</strong><small>Coming in next update</small></div>
-            <span class="lock">LOCKED</span>
-          </div>
-          <p class="panel-note">Earn coins by eliminating monsters. Weapon upgrades will be added in the next build.</p>
-        </section>
-
-        <section class="panel-card objective-card">
-          <div class="section-label">MISSION OBJECTIVE</div>
-          <div class="objective"><span class="objective-icon">✓</span><div><strong>Survive 10 waves</strong><small>Clear each wave to advance</small></div></div>
-          <div class="objective"><span class="objective-icon boss-icon">!</span><div><strong>Boss waves: 5 &amp; 10</strong><small>Bosses have increased health</small></div></div>
-          <div class="objective"><span class="objective-icon map-icon">⌖</span><div><strong>Unlock the next map</strong><small>Defeat the Mountain Overlord</small></div></div>
-        </section>
-        <div class="tip-box"><strong>FIELD TIP</strong><p>Keep moving in a circle and let the Ranger-9 handle nearby threats.</p></div>
-      </aside>
-    </section>
-    <footer><span>MONSTER RUSH: SURVIVAL</span><span>PROTOTYPE 0.1 • BUILT FOR SURVIVORS</span></footer>
-  </main>
-  <script src="game.js"></script>
-</body>
-</html>
+<main id="gameShell">
+<canvas id="gameCanvas"></canvas>
+<section id="startScreen" class="overlay"><div class="panel">
+<p class="eyebrow">MOUNTAIN OUTPOST</p><h1>MONSTER <span>RUSH</span></h1><p class="subtitle">SURVIVAL PROTOCOL</p>
+<p>Survive 10 waves. The horde never waits.</p><button id="startButton">START SURVIVAL</button>
+<p class="hint">Move with the left joystick. Your weapon fires automatically.</p>
+</div></section>
+<section id="gameOverScreen" class="overlay hidden"><div class="panel">
+<p class="eyebrow">MOUNTAIN OUTPOST</p><h1 id="endTitle">RUN OVER</h1><p id="endMessage"></p><button id="retryButton">TRY AGAIN</button>
+</div></section>
+<section id="hud" class="hud hidden">
+<div class="stat"><small>WAVE</small><strong id="waveText">1 / 10</strong></div>
+<div class="stat"><small>KILLS</small><strong id="killsText">0</strong></div>
+<div class="health"><small>HEALTH <b id="healthText">100</b></small><div class="track"><div id="healthFill"></div></div></div>
+<div class="stat coins">◆ <strong id="coinsText">0</strong></div>
+</section>
+<div id="joystick" class="joystick hidden"><div id="stickKnob"></div></div>
+<div id="rotateNotice" class="rotate-notice"><b>↻</b><strong>ROTATE YOUR PHONE</strong><span>Monster Rush is played in landscape.</span></div>
+</main><script src="game.js"></script>
+</body></html>
